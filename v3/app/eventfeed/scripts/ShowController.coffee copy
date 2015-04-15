@@ -1,0 +1,25 @@
+angular
+  .module('eventfeed')
+  .controller("ShowController", ($scope, Eventfeed, supersonic) ->
+    $scope.eventfeed = null
+    $scope.showSpinner = true
+    $scope.dataId = undefined
+
+    _refreshViewData = ->
+      Eventfeed.find($scope.dataId).then (eventfeed) ->
+        $scope.$apply ->
+          $scope.eventfeed = eventfeed
+          $scope.showSpinner = false
+
+    supersonic.ui.views.current.whenVisible ->
+      _refreshViewData() if $scope.dataId
+
+    supersonic.ui.views.current.params.onValue (values) ->
+      $scope.dataId = values.id
+      _refreshViewData()
+
+    $scope.remove = (id) ->
+      $scope.showSpinner = true
+      $scope.eventfeed.delete().then ->
+        supersonic.ui.layers.pop()
+  )

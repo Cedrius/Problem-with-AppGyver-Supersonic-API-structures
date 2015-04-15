@@ -1,0 +1,20 @@
+<div ng-controller="ShowController">
+  <super-navbar>
+    <super-navbar-title>
+      Show
+    </super-navbar-title>
+  </super-navbar>
+
+ 
+      <h2 ng-bind="eventfeed.EventTitles['text']"></h2>
+      
+      
+      
+       <img ng-src="{{ eventfeed.HeadlineImages.src }}" width="100px" height="100px">
+      
+       <p><span ng-bind="eventfeed.eventdescription"></span></p> 
+      
+
+
+     
+</div>

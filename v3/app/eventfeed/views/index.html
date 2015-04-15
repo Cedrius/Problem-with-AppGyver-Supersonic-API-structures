@@ -1,0 +1,31 @@
+<div ng-controller="IndexController">
+  <super-navbar>
+    <super-navbar-title>
+      Eventfeed Index
+    </super-navbar-title>
+  </super-navbar>
+
+  
+
+      <super-navigate location="eventfeed#show" data-params-id="{{ eventfeed.id }}" ng-repeat="eventfeed in eventfeeds">
+        <li class="item item-icon-right">
+          <h2 ng-bind="eventfeed.EventTitles['text']"></h2>
+          <img ng-src="{{ eventfeed.HeadlineImages.src }}" width="100px" height="100px">
+      <p> {{ eventfeed.eventdescription }} </p>
+          <i class="icon super-ios7-arrow-right"></i>
+        </li>
+      </super-navigate>
+
+    </ul>
+
+    <h4 ng-show="eventfeeds.length == 0" class="assertive padding">
+      No eventfeeds found. Create one?
+    </h4>
+
+    <super-modal-show location="eventfeed#new">
+      <button class="button button-full button-positive">
+        Create a new eventfeed
+      </button>
+    </super-modal-show>
+  </div>
+</div>
